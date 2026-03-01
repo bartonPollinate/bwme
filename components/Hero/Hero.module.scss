@@ -1,0 +1,60 @@
+.canvasParent {
+  position: absolute;
+  top:30px;
+  left: 30px;
+  right: 30px;
+  bottom: 30px;
+  background: #050e2d;//#181e1e;
+  box-shadow: 0 0 30px #0024 inset;
+  overflow: hidden;
+  @media(max-width:800px){
+    position: fixed;
+  }
+}
+.h1 {
+  pointer-events: none;
+  position: absolute;
+  width: auto;
+  color: #fff;
+  padding: 0 15px;
+  color:#c2fe0c;
+  font-size: 32px;
+  text-align:center;
+  top: 50%;
+  //left: 50%;
+  width: 100%;
+  transform: translate(0%, -50%);
+  text-shadow: 0 0 30px #050e2d66;
+  //letter-spacing:.1em;
+  margin: 0;
+  /*background: #000;*/
+/*   background: linear-gradient(to bottom, #0000 0%,#181e1edd 10%,#181e1edd 90%, #0000 10%); */
+  .small {
+    font-size:18px;
+    display: block;
+    margin: 10px auto;
+    text-shadow: 0 0 60px #050e2dff;
+  }
+}
+.canvas {
+  animation: fadeIn 3s 1;
+}
+
+  @media (min-width: 801px){
+    .h1{
+      //font-size: 72px;
+      font-size: 9vw;
+    }
+    .h1 .small {
+      font-size:32px;
+    }
+  }
+
+
+
+
+
+@keyframes fadeIn{
+  from{opacity:0;}
+  to{opacity:1;}
+}
