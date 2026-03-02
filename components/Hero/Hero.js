@@ -5,13 +5,18 @@ export default function HeroCanvas() {
   const canvasRef = useRef(null);
   const parentRef = useRef(null);
 
+
+
   useEffect(() => {
     const canvas = canvasRef.current;
     const canvasParent = parentRef.current;
     const ctx = canvas.getContext("2d");
 
     let mobile = window.outerWidth <= 800;
-    let animating = true;
+    let animating = false;
+
+    
+    //console.log(window.scrollY);
 
     let magnetMin = 2000;
     let magnetMax = 12000;
@@ -23,7 +28,8 @@ export default function HeroCanvas() {
 
     let allDots = [];
     let frame = 0;
-    let lastScroll = window.pageYOffset;
+    let lastScroll = 0;
+
 
     const myName =
       "HI, MY NAME IS BARTON WHITE. I AM A WEB DEVELOPER FROM PORTLAND, OR. "
@@ -87,6 +93,7 @@ export default function HeroCanvas() {
     }
 
     function init() {
+      //setTimeout(() => handleScroll(), 250);
       allDots = [];
       let xLength = (canvas.width - 20) / 20;
       let yLength = (canvas.height - 5) / 20;
@@ -115,6 +122,7 @@ export default function HeroCanvas() {
     }
 
     function animate() {
+      //console.log(mouse.x, mouse.y, animating);
       frame++;
       if (frame > 60) frame = 0;
 
@@ -122,8 +130,9 @@ export default function HeroCanvas() {
         ctx.clearRect(0, 0, canvas.width, canvas.height);
         allDots.forEach((dot) => dot.update());
       }
-
+      //console.log(mouse.x,mouse.y);
       if (touch.active) {
+        console.log('touch');
         mouse.x = touch.x;
         mouse.y = lerp(mouse.y, touch.y, 0.25);
       }
@@ -134,6 +143,7 @@ export default function HeroCanvas() {
     // ---- Events ----
 
     function handleMouseMove(e) {
+
       mouse.x = e.clientX - canvasParent.offsetLeft;
       mouse.y =
         e.clientY + window.pageYOffset - canvasParent.offsetTop;
@@ -153,13 +163,16 @@ export default function HeroCanvas() {
       }, 33);
     }
 
+    function handleMouseOut() {
+      mouse.x = null;
+      mouse.y = null;
+    }
+
     function handleScroll() {
       let mobilebuffer = mobile ? window.outerHeight * 0.25 : 0;
-
-      if (
-        window.pageYOffset - mobilebuffer <
-        canvasParent.offsetHeight + canvasParent.offsetTop
-      ) {
+      //console.log(animating);
+      if (window.scrollY - mobilebuffer <
+        canvasParent.offsetHeight + canvasParent.offsetTop) {
         if (!animating) {
           animating = true;
           requestAnimationFrame(animate);
@@ -168,14 +181,37 @@ export default function HeroCanvas() {
         animating = false;
       }
 
+      //console.log('!',window.pageYOffset - lastScroll);
       mouse.y += window.pageYOffset - lastScroll;
       lastScroll = window.pageYOffset;
     }
+
+    // Note: There was a glitch causing the canvas to flicker if navigated via browser forward/back below the canvas element. animate was stuck to true while the mouse x and y were null. then when scrolling into view the mouse data flickered to null. This apparently forces the event to fire only after the scroll data is restored
+    requestAnimationFrame(() => {
+      requestAnimationFrame(() => {
+        lastScroll = window.pageYOffset;
+
+      // run your scroll logic here
+      handleScroll();
+      });
+    });
 
     function handleResize() {
       resizeCanvas();
       init();
     }
+    function handlePageShow(event) {
+      console.log("pageshow", mouse);
+      if (event.persisted) {
+        // page restored from bfcache
+        lastScroll = window.pageYOffset;
+        resizeCanvas();
+        init();
+        requestAnimationFrame(animate);
+      }
+    }
+
+    
 
     // ---- Setup ----
 
@@ -185,18 +221,27 @@ export default function HeroCanvas() {
 
     window.addEventListener("mousemove", handleMouseMove);
     window.addEventListener("mousedown", handleMouseDown);
+    //window.addEventListener("mouseout", handleMouseOut);
     window.addEventListener("mouseup", handleMouseUp);
     window.addEventListener("resize", handleResize);
     document.addEventListener("scroll", handleScroll);
+    //window.addEventListener("pageshow", handlePageShow);
+    
+
 
     return () => {
       window.removeEventListener("mousemove", handleMouseMove);
       window.removeEventListener("mousedown", handleMouseDown);
+      //window.removeEventListener("mouseout", handleMouseOut);
       window.removeEventListener("mouseup", handleMouseUp);
       window.removeEventListener("resize", handleResize);
       document.removeEventListener("scroll", handleScroll);
+      //window.removeEventListener("pageshow", handlePageShow);
     };
+
   }, []);
+
+
 
   return (
     <div className={styles.canvasParent} ref={parentRef} >
