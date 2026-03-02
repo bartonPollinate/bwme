@@ -2,10 +2,12 @@
   box-sizing: border-box;
   -webkit-overflow-scrolling: touch;
 }
+$green: #c2fe0c;
+$black: #0d0f16;
 html, body {
   padding: 0;
   margin: 0;
-  background: #000;
+  background: $black;
   color: #fff;
   font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen, Ubuntu, Cantarell,
     Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
@@ -15,6 +17,7 @@ body {
 }
 h1,h2,h3,h4,h5,h6 {
   font-family: "M PLUS 1 Code", monospace;
+  //color: #c2fe0c;
 }
 
 main {
@@ -34,9 +37,12 @@ code {
 }
 
 .container {
-  height: 100vh;
+  min-height: 100vh;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+}
+.content {
+  padding: 30px;
 }

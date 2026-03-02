@@ -2,6 +2,7 @@ import Head from 'next/head'
 import Header from '@components/Header'
 import Footer from '@components/Footer'
 import Hero from '@components/Hero/Hero'
+import Link from 'next/link'
 
 export default function Home() {
   return (
@@ -16,23 +17,19 @@ export default function Home() {
 
       <main>
         <Hero />
-        <div class="content">
-    <p>
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras non rhoncus risus. Vivamus vulputate feugiat egestas. Morbi egestas ex eget lorem lacinia, sit amet consequat est convallis. Sed efficitur finibus porttitor. Fusce id urna molestie, cursus nunc quis, elementum metus. Maecenas et dolor imperdiet, varius sapien nec, porttitor est. Nam venenatis, dui at condimentum viverra, mi ipsum efficitur risus, sit amet mattis massa velit a purus. Integer rutrum consectetur enim quis luctus. Nullam ullamcorper in nulla eu ullamcorper. Pellentesque sed sem at erat convallis facilisis eu a nulla.
-</p>
-<p>
-Interdum et malesuada fames ac ante ipsum primis in faucibus. Aenean ornare massa iaculis mollis pellentesque. Phasellus in nulla ut orci fermentum scelerisque et non odio. Fusce vitae venenatis dui. Duis id sollicitudin diam, tincidunt sagittis elit. Interdum et malesuada fames ac ante ipsum primis in faucibus. Nullam lorem quam, consequat id lacus at, laoreet dignissim metus. Nam luctus porta nisl at lobortis. Aliquam faucibus semper lorem nec interdum. Proin nec bibendum lorem. Praesent neque metus, lobortis nec porttitor quis, sollicitudin at enim. In mauris risus, efficitur eget accumsan sed, luctus quis eros. Proin non tortor pulvinar, volutpat lorem id, vestibulum lorem.
-</p>
-<p>
-Nullam finibus, ipsum sed sollicitudin finibus, purus turpis porttitor nisl, eu facilisis ante ligula a lorem. Vestibulum pharetra et sapien ut iaculis. Curabitur accumsan est metus, vitae vehicula libero aliquam eget. Proin sit amet fermentum est. Maecenas mollis euismod velit a scelerisque. Etiam lobortis, ante in mollis tincidunt, urna eros feugiat dui, nec pulvinar nibh mi in tellus. Integer porta purus tempor, laoreet elit et, malesuada lacus. Sed viverra consequat nibh eu semper. Integer rhoncus odio quis dolor tempus porttitor. Praesent convallis tortor vel luctus condimentum. Sed in libero quis justo ornare gravida eu eget nisl. Phasellus est massa, sodales at volutpat eget, lacinia porttitor eros. Nunc gravida sem urna, a tristique risus tempus nec. In mattis nibh nec dui semper, eget varius dui mattis.
-</p>
-<p>
-Sed sed auctor sapien, luctus dictum sapien. Fusce libero lacus, porttitor id ultricies eu, auctor tincidunt mauris. Suspendisse gravida eu sapien ac vestibulum. Quisque posuere lacus eget justo semper, sit amet blandit felis tincidunt. Aenean a augue et risus blandit dictum at id velit. Nam efficitur quam vitae luctus fermentum. Nunc sollicitudin, elit non elementum porta, lorem massa rhoncus arcu, a dapibus velit nulla eu urna. Quisque faucibus turpis sed magna aliquam, non consequat quam fermentum. Maecenas congue commodo eros, at luctus nisl vulputate ut. Ut feugiat sit amet ipsum et vestibulum. Aliquam magna tortor, pulvinar sit amet interdum id, lobortis quis nisl. Nulla sit amet fermentum libero, ac tempor massa. Sed ipsum tellus, tristique in purus sit amet, bibendum convallis neque. Aliquam dignissim leo eu mi bibendum, maximus sagittis nibh rhoncus. Sed consequat enim ut dictum commodo. Maecenas elementum faucibus risus at egestas.
-</p>
-<p>
-Donec malesuada felis et iaculis maximus. Sed tincidunt mauris nulla, eu sodales sapien gravida in. Duis vitae auctor nisi. Morbi ut lobortis augue, a euismod risus. Nulla volutpat id purus vel egestas. Nullam nec tempus quam. Proin ultrices dapibus commodo. Fusce porttitor a risus quis commodo. Etiam semper, arcu at eleifend condimentum, nunc nibh imperdiet nulla, vel laoreet nunc urna eget enim. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Sed mattis, felis gravida viverra sodales, orci purus ullamcorper risus, quis vestibulum nisl magna sed elit. Mauris ut viverra turpis. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Donec semper felis libero, a mollis urna elementum vel.
-</p>
-  </div>
+        <div className="content">
+          <Link href="/second"> other page</Link>
+          <h2>What is Lorem Ipsum?</h2>
+          <p><strong>Lorem Ipsum</strong> is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
+
+          <h2>Why do we use it?</h2>
+          <p>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).</p>
+          <h2>Where does it come from?</h2>
+          <p>Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the undoubtable source. Lorem Ipsum comes from sections 1.10.32 and 1.10.33 of "de Finibus Bonorum et Malorum" (The Extremes of Good and Evil) by Cicero, written in 45 BC. This book is a treatise on the theory of ethics, very popular during the Renaissance. The first line of Lorem Ipsum, "Lorem ipsum dolor sit amet..", comes from a line in section 1.10.32.</p><p>The standard chunk of Lorem Ipsum used since the 1500s is reproduced below for those interested. Sections 1.10.32 and 1.10.33 from "de Finibus Bonorum et Malorum" by Cicero are also reproduced in their exact original form, accompanied by English versions from the 1914 translation by H. Rackham.</p>
+
+          <h2>Where can I get some?</h2>
+          <p>There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isn't anything embarrassing hidden in the middle of text. All the Lorem Ipsum generators on the Internet tend to repeat predefined chunks as necessary, making this the first true generator on the Internet. It uses a dictionary of over 200 Latin words, combined with a handful of model sentence structures, to generate Lorem Ipsum which looks reasonable. The generated Lorem Ipsum is therefore always free from repetition, injected humour, or non-characteristic words etc.</p>
+        </div>
       </main>
 
       <Footer />
