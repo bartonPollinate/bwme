@@ -186,6 +186,28 @@ export default function HeroCanvas() {
       init();
     }
 
+    function handleTouchstart(e){
+      touch.active = true;
+    touch.x = e.touches[0].clientX;
+      touch.y = e.touches[0].clientY;
+     // mouse.x = e.touches[0].clientX;
+      //mouse.y = e.touches[0].clientY;// + window.pageYOffset;
+    }
+    function handleTouchend(e){
+      touch.active = false;
+      //console.log(touching);
+     // mouse.x = e.touches[0].clientX;
+      //mouse.y = e.touches[0].clientY;// + window.pageYOffset;
+    }
+    function handleTouchmove(e){
+      touch.x = e.touches[0].clientX;
+      touch.y = e.touches[0].clientY;
+      /*console.log('touchmove');
+      mouse.x = e.touches[0].clientX;
+      //this works as expected but it looks cooler when it doesn't scroll with you
+      mouse.y = e.touches[0].clientY;///window.pageYOffset;*/
+    }
+
     
 
     // ---- Setup ----
@@ -212,6 +234,9 @@ export default function HeroCanvas() {
     window.addEventListener("mouseup", handleMouseUp);
     window.addEventListener("resize", handleResize);
     window.addEventListener("scroll", handleScroll);
+    window.addEventListener('touchstart', handleTouchstart);
+    window.addEventListener('touchend', handleTouchend);
+    window.addEventListener('touchmove', handleTouchmove);
     //window.addEventListener("pageshow", handlePageShow);
     
 
@@ -224,6 +249,9 @@ export default function HeroCanvas() {
       window.removeEventListener("mouseup", handleMouseUp);
       window.removeEventListener("resize", handleResize);
       window.removeEventListener("scroll", handleScroll);
+      window.removeEventListener('touchstart', handleTouchstart);
+      window.removeEventListener('touchend', handleTouchend);
+      window.removeEventListener('touchmove', handleTouchmove);
       //window.removeEventListener("pageshow", handlePageShow);
     };
 

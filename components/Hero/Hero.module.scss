@@ -10,7 +10,7 @@
   margin: 30px;
   height: calc(100vh - 60px);
   background: linear-gradient(135deg, colors.$navy 30%, #130a34);
-  box-shadow: inset 0 0 40px 20px #0028;
+  box-shadow: inset 0 0 60px 00px #1008;
   overflow: hidden;
   // &::after, &::before {
   //   content: '';
@@ -53,7 +53,7 @@
   transform: translate(0%, -50%);
   text-shadow: 0 0 30px rgba(colors.$navy, .4);
   margin: 0;
-  animation: fadeIn .25s .5s  1 both;
+  animation: fadeIn 1s  1 both;
   .small {
     font-size:18px;
     display: block;
