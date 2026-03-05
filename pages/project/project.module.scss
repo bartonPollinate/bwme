@@ -1,0 +1,45 @@
+@use '@styles/colors';
+@use '@styles/spacing';
+
+.heading{
+  font-weight: 500;
+  font-size: 32px;
+  font-style: normal;
+  color: colors.$green;//6373d2
+  text-transform: uppercase;
+}
+.main {
+  position: relative;
+  padding-left: 110px;
+  overflow: hidden;
+  flex-basis: 100%;
+  padding:  30px 0 30px 110px;
+  .heading {
+    // transform: rotate(90deg) translateY(-85%);
+    // position: absolute;
+    // left: 0px;
+    // top: 30px;
+    // font-size: 100px;
+    // transform-origin: left top;
+    // transition: all .5s;
+    // margin: 0;
+    // animation: titleIn .5s ease-out;
+  }
+  .img {
+    float: right;
+    margin-left: 30px;
+    margin-bottom: 30px;
+  }
+}
+.content {
+	max-width: spacing.$contentRawWidth;
+}
+
+@keyframes titleIn{
+	from {
+		transform: rotate(90deg) translateY(15%);
+	}
+	to {
+		transform: rotate(90deg) translateY(-85%);
+	}
+}

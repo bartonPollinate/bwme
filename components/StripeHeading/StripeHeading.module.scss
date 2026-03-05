@@ -1,0 +1,10 @@
+@use '@styles/colors';
+.wrapper {
+  display: flex;
+}
+.stripes {
+  flex: 1;
+  background: repeating-linear-gradient(45deg, colors.$black, colors.$black 20px, colors.$lightNavy 20px, colors.$lightNavy 40px);
+  margin-block: 20px;
+  margin-left: 20px;
+}

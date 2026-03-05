@@ -1,0 +1,105 @@
+@use '@styles/colors';
+@use '@styles/spacing';
+
+.wrapper {
+  background-color: colors.$black;
+  background-image: linear-gradient(colors.$lightNavy 1px, transparent 2px), linear-gradient(90deg, colors.$lightNavy 1px, transparent 2px);
+  background-size: 180px 180px;
+  // background-image: radial-gradient(colors.$lightNavy 4px, transparent 4px);
+  // background-size: 16px 16px;
+  background-position: -2px 0px;
+  position: relative;
+}
+.container {
+  position: relative;
+  clear:both;
+  display: flex;
+  flex-wrap:wrap;
+  max-width: spacing.$contentWidth;
+  padding: spacing.$basePadding spacing.$basePadding 170px;
+  margin-inline: auto;
+  gap: spacing.$basePadding;
+
+  overflow: hidden;
+  // background-image: radial-gradient(colors.$lightNavy .1em, transparent .1em);
+  // background-size: 16px 16px;
+  .link {
+    color: colors.$green;
+    text-decoration: none;
+    flex: 0 1 calc(100% / 3 - spacing.$basePadding*2);
+    //padding: 20px;
+    transition: flex-basis;
+    position: relative;
+    &:nth-child(3n+2){
+      top: 90px;
+    }
+    &:nth-child(3n+3){
+      top: 180px;
+    }
+    .heading{
+      background: colors.$gradient;
+      background-size: 400% 100%;
+      background-position: 100% 0;
+      background-clip: text;
+      color: transparent;
+      transition: background-position .5s;
+      display: inline-block;
+    }
+    .img {
+      max-width: 100%;
+      box-shadow: 0 0 0 colors.$green;
+      transition: .5s;
+
+      top: 0;
+      left: 0;
+      position: relative;
+    }
+    &:hover, &:focus{
+      text-decoration: underline;
+      .heading {
+        background-position: 0% 0;
+        color: transparent;
+        transition: background-position .5s;
+        text-decoration: underline;
+      }
+      .img {
+        max-width: 100%;
+        top: -3px;
+        left: -3px;
+        box-shadow: 3px 3px 0 colors.$green;
+      }
+    }
+    // &:focus {
+    //   outline: 2px dotted colors.$green;
+    // }
+  }
+}
+
+.heading{
+  font-weight: 500;
+  font-size: 32px;
+  font-style: normal;
+  color: colors.$green;//6373d2
+  text-transform: uppercase;
+}
+.open {
+  position: relative;
+  padding-left: 110px;
+  overflow: hidden;
+  flex-basis: 100%;
+  padding:  30px 0 30px 110px;
+  .heading {
+    transform: rotate(90deg) translateY(-85%);
+    position: absolute;
+    left: 0px;
+    top: 30px;
+    font-size: 100px;
+    transform-origin: left top;
+    transition: all .5s;
+    margin: 0;
+  }
+  .img {
+    float: right;
+    margin-left: 30px;
+  }
+}

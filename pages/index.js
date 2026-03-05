@@ -2,6 +2,8 @@ import Head from 'next/head'
 import Header from '@components/Header'
 import Footer from '@components/Footer'
 import Hero from '@components/Hero/Hero'
+import StripeHeading from '@components/StripeHeading/StripeHeading'
+import Grid from '@components/Grid/Grid'
 import Link from 'next/link'
 
 export default function Home() {
@@ -11,21 +13,23 @@ export default function Home() {
     <div className="container">
       <Head>
         <title>Barton White - Portfolio</title>
-        <link rel="icon" href="/favicon.ico" />
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-        <link href="https://fonts.googleapis.com/css2?family=M+PLUS+1+Code:wght@100..700&family=Noto+Sans:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet" />
       </Head>
 
       <main>
         <Hero />
-        <div className="content">
-          <p>I have been making high quality websites in a variety of platforms for over {difference} years. Below are the highlights of sites I have developed.</p>
-          <p>I create websites with the user in mind from start to finish. I am well-versed in HTML, CSS, Javascript, PHP, Python, and Node. Many of my sites are Wordpress and I have created custom plugins and themes for that platform. The site you are looking at now was created with Gatsby and I am really excited about JAMstack and advanced static sites.</p>
-          <p>Click on my projects below to read more about my role in each of them. More images are coming soon.</p>
-          <Link className="button" href="/logo-netlify.svg">View my resume</Link>
+        <div className="wrapper">
+          
+          <div className="content bigText" style={{paddingBottom: '60px'}}>
+            <StripeHeading>About Me</StripeHeading>
+            <p>I have been making high quality websites in a variety of platforms for over {difference} years.</p>
+            <p>From small brochure sites to huge high traffic sites, I craft sites that capture audiences of all kinds while being easy to maintain and edit for clients as well. Whether you're a solo entrepreneur or a state government, your website needs to represent you well.</p>
+            <p>Below is my resume and below that are some highlights of sites I have developed.</p>
+            <br />
+            <Link className="button" href="/logo-netlify.svg">View my resume</Link>
 
+          </div>
         </div>
+        <Grid />
       </main>
 
       <Footer />

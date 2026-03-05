@@ -1,5 +1,6 @@
 import styles from './Hero.module.scss';
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useCallback } from "react";
+
 
 export default function HeroCanvas() {
   const canvasRef = useRef(null);
@@ -14,9 +15,9 @@ export default function HeroCanvas() {
 
     let mobile = window.outerWidth <= 800;
     let animating = false;
+    let animationId;
 
     
-    //console.log(window.scrollY);
 
     let magnetMin = 2000;
     let magnetMax = 12000;
@@ -44,8 +45,9 @@ export default function HeroCanvas() {
     }
 
     function resizeCanvas() {
+      
       canvas.width = canvasParent.offsetWidth;
-      canvas.height = canvasParent.offsetHeight;
+        canvas.height = canvasParent.offsetHeight;
     }
 
     function Dot(x, y, letter, rando) {
@@ -122,7 +124,6 @@ export default function HeroCanvas() {
     }
 
     function animate() {
-      //console.log(mouse.x, mouse.y, animating);
       frame++;
       if (frame > 60) frame = 0;
 
@@ -130,23 +131,22 @@ export default function HeroCanvas() {
         ctx.clearRect(0, 0, canvas.width, canvas.height);
         allDots.forEach((dot) => dot.update());
       }
-      //console.log(mouse.x,mouse.y);
+
       if (touch.active) {
         console.log('touch');
         mouse.x = touch.x;
         mouse.y = lerp(mouse.y, touch.y, 0.25);
       }
 
-      if (animating) requestAnimationFrame(animate);
+      animationId = requestAnimationFrame(animate);
+
     }
 
     // ---- Events ----
 
     function handleMouseMove(e) {
-
       mouse.x = e.clientX - canvasParent.offsetLeft;
-      mouse.y =
-        e.clientY + window.pageYOffset - canvasParent.offsetTop;
+      mouse.y = e.clientY + window.pageYOffset - canvasParent.offsetTop;
     }
 
     function handleMouseDown() {
@@ -170,45 +170,20 @@ export default function HeroCanvas() {
 
     function handleScroll() {
       let mobilebuffer = mobile ? window.outerHeight * 0.25 : 0;
-      //console.log(animating);
+
       if (window.scrollY - mobilebuffer <
         canvasParent.offsetHeight + canvasParent.offsetTop) {
         if (!animating) {
           animating = true;
-          requestAnimationFrame(animate);
         }
       } else {
         animating = false;
       }
-
-      //console.log('!',window.pageYOffset - lastScroll);
-      mouse.y += window.pageYOffset - lastScroll;
-      lastScroll = window.pageYOffset;
     }
-
-    // Note: There was a glitch causing the canvas to flicker if navigated via browser forward/back below the canvas element. animate was stuck to true while the mouse x and y were null. then when scrolling into view the mouse data flickered to null. This apparently forces the event to fire only after the scroll data is restored
-    requestAnimationFrame(() => {
-      requestAnimationFrame(() => {
-        lastScroll = window.pageYOffset;
-
-      // run your scroll logic here
-      handleScroll();
-      });
-    });
 
     function handleResize() {
       resizeCanvas();
       init();
-    }
-    function handlePageShow(event) {
-      console.log("pageshow", mouse);
-      if (event.persisted) {
-        // page restored from bfcache
-        lastScroll = window.pageYOffset;
-        resizeCanvas();
-        init();
-        requestAnimationFrame(animate);
-      }
     }
 
     
@@ -217,25 +192,38 @@ export default function HeroCanvas() {
 
     resizeCanvas();
     init();
-    requestAnimationFrame(animate);
+    animating = true;
+    animationId = requestAnimationFrame(animate);
+    
+    requestAnimationFrame(() => {
+      requestAnimationFrame(() => {
+        lastScroll = window.pageYOffset;
+
+      // run your scroll logic here
+      handleScroll();
+
+      //animationId = requestAnimationFrame(animate);
+      });
+    });
 
     window.addEventListener("mousemove", handleMouseMove);
     window.addEventListener("mousedown", handleMouseDown);
-    //window.addEventListener("mouseout", handleMouseOut);
+    window.addEventListener("mouseout", handleMouseOut);
     window.addEventListener("mouseup", handleMouseUp);
     window.addEventListener("resize", handleResize);
-    document.addEventListener("scroll", handleScroll);
+    window.addEventListener("scroll", handleScroll);
     //window.addEventListener("pageshow", handlePageShow);
     
 
 
     return () => {
+      cancelAnimationFrame(animationId);
       window.removeEventListener("mousemove", handleMouseMove);
       window.removeEventListener("mousedown", handleMouseDown);
-      //window.removeEventListener("mouseout", handleMouseOut);
+      window.removeEventListener("mouseout", handleMouseOut);
       window.removeEventListener("mouseup", handleMouseUp);
       window.removeEventListener("resize", handleResize);
-      document.removeEventListener("scroll", handleScroll);
+      window.removeEventListener("scroll", handleScroll);
       //window.removeEventListener("pageshow", handlePageShow);
     };
 

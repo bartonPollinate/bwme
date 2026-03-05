@@ -1,14 +1,41 @@
+@use '@styles/colors';
+@use '@styles/spacing';
+
 .canvasParent {
-  position: absolute;
-  top:30px;
-  left: 30px;
-  right: 30px;
-  bottom: 30px;
-  background: #050e2d;//#181e1e;
-  box-shadow: 0 0 30px #0024 inset;
+  position: relative;
+  // top:30px;
+  // left: 30px;
+  // right: 30px;
+  // bottom: 30px;
+  margin: 30px;
+  height: calc(100vh - 60px);
+  background: linear-gradient(135deg, colors.$navy 30%, #130a34);
+  box-shadow: inset 0 0 40px 20px #0028;
   overflow: hidden;
+  // &::after, &::before {
+  //   content: '';
+  //   position: absolute;
+  //   left: 0;
+  //   width: 100%;
+  //   height: 100%;
+  //   background-color: #000;
+  //   animation: fadeOut .25s .25s 1 forwards;
+  // }
+  // &::after{
+  //   top: 0;
+  // } 
+  // &::before{
+  //   bottom: 0;
+
+  // }
   @media(max-width:800px){
     position: fixed;
+    top:0;
+    right: 0;
+    left: 0;
+    & + * {
+      margin-top: 100vh;
+    }
   }
 }
 .h1 {
@@ -17,24 +44,25 @@
   width: auto;
   color: #fff;
   padding: 0 15px;
-  color:#c2fe0c;
+  color:colors.$green;
   font-size: 32px;
   text-align:center;
   top: 50%;
   //left: 50%;
   width: 100%;
   transform: translate(0%, -50%);
-  text-shadow: 0 0 30px #050e2d66;
+  text-shadow: 0 0 30px rgba(colors.$navy, .4);
   margin: 0;
+  animation: fadeIn .25s .5s  1 both;
   .small {
     font-size:18px;
     display: block;
     margin: 10px auto;
-    text-shadow: 0 0 60px #050e2dff;
+    text-shadow: 0 0 60px colors.$navy;
   }
 }
 .canvas {
-  animation: fadeIn 3s 1;
+  animation: fadeIn 2.5s .5s 1 both;
 }
 
   @media (min-width: 801px){
@@ -54,4 +82,8 @@
 @keyframes fadeIn{
   from{opacity:0;}
   to{opacity:1;}
+}
+@keyframes fadeOut{
+  from{height: 100%}
+  to{height:0%;}
 }
