@@ -9,7 +9,7 @@ export default function Grid(props) {
   const current = (props.current) ? props.current : true;
   return (
     <div className={styles.wrapper}>
-      <img src="/47short.svg" alt="" role="presentation" className="fortyseven" />
+      
       <div className={styles.container}>
         {allData.map((v,i)=>(
           (current !== v.slug) &&

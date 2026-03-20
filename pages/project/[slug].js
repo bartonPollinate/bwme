@@ -1,10 +1,13 @@
 import Head from 'next/head'
 import { useRouter } from 'next/router'
 import Footer from '@components/Footer'
+
+import Menu from '@components/Menu/Menu'
 import Data from '@components/Data'
 import Link from 'next/link'
 import styles from './project.module.scss'
 import Grid from '@components/Grid/Grid'
+import OpgrImages from '@components/OpgrImages/OpgrImages'
 import dynamic from 'next/dynamic'
 
 
@@ -21,21 +24,28 @@ export default function Home() {
           <Head>
             <title>{postData.name} - Barton White</title>
           </Head>
-    
-          <main className={styles.main}>
+          <Menu />
+          <main className={styles.main 
+            //+' '+ styles[router.query.slug]
+          }>
             <h1 className={styles.heading}>{postData.name}</h1>
-              {postData.screens.length?
-               postData.screens.map((v,i)=>(<img key={i} className={styles.img} src={v} alt={'screenshot from '+postData.name} />)):
-               (<img className={styles.img} src="https://images.unsplash.com/photo-1772173136500-e91e46fe24b8?q=80&w=764&h=764&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt={'screenshot from '+postData.name} />)}
+              {(router.query.slug !== 'opgr')?
+                postData.screens.length > 0 &&
+                  postData.screens.map((v,i)=>(
+                    <img key={i} className={styles.img} src={'/projects/screens/'+v} alt={'screenshot from '+postData.name} />
+                  )):
+                <OpgrImages />
+               
+              }
               
-            <div className={styles.content}>
+            
               <Copy />
               <br />
               <Link className="button" href={postData.url} target="_blank">Visit the site</Link>
               <br />
               <br />
               <Link href="/">&#8592; Back to Home</Link>
-            </div>
+            
           </main>
           <Grid current={postData.slug}/>
     

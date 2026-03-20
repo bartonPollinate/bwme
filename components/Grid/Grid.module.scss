@@ -3,12 +3,13 @@
 
 .wrapper {
   background-color: colors.$black;
-  background-image: linear-gradient(colors.$lightNavy 1px, transparent 2px), linear-gradient(90deg, colors.$lightNavy 1px, transparent 2px);
-  background-size: 180px 180px;
-  // background-image: radial-gradient(colors.$lightNavy 4px, transparent 4px);
-  // background-size: 16px 16px;
+  // background-image: linear-gradient(colors.$lightNavy 1px, transparent 2px), linear-gradient(90deg, colors.$lightNavy 1px, transparent 2px);
+  // background-size: 180px 180px;
+  background-image: radial-gradient(colors.$lightNavy 2px, transparent 2px);
+  background-size: 64px 64px;
   background-position: -2px 0px;
   position: relative;
+  border-top: 1px solid colors.$lightNavy;
 }
 .container {
   position: relative;
@@ -16,26 +17,36 @@
   display: flex;
   flex-wrap:wrap;
   max-width: spacing.$contentWidth;
-  padding: spacing.$basePadding spacing.$basePadding 170px;
+  padding: spacing.$basePadding*3 spacing.$basePadding;
   margin-inline: auto;
   gap: spacing.$basePadding;
-
+align-items: flex-end;
   overflow: hidden;
   // background-image: radial-gradient(colors.$lightNavy .1em, transparent .1em);
   // background-size: 16px 16px;
   .link {
     color: colors.$green;
     text-decoration: none;
-    flex: 0 1 calc(100% / 3 - spacing.$basePadding*2);
+    //flex: 0 1 calc(100% / 3 - spacing.$basePadding*2);
+
     //padding: 20px;
     transition: flex-basis;
     position: relative;
-    &:nth-child(3n+2){
-      top: 90px;
+
+    width: 100%;
+    @media (min-width: 641px) {
+      width: calc(50% - 20px);
     }
-    &:nth-child(3n+3){
-      top: 180px;
+    @media (min-width: 1101px) {
+      width: calc(33.33333% - 22px);
+      // &:nth-child(3n+2){
+      //   top: 90px;
+      // }
+      // &:nth-child(3n+3){
+      //   top: 180px;
+      // }
     }
+    
     .heading{
       background: colors.$gradient;
       background-size: 400% 100%;
