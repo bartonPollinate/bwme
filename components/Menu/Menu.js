@@ -89,7 +89,7 @@ export default function Menu({ size = 48, strokeWidth = 2 }) {
       
       <nav ref={ref}  className={open? 'open menu':'menu'} style={{
           position: isSticky ? "fixed" : "absolute",
-          top: isSticky ? 0 : "auto",}}>
+          top: 0,}}>
 
         <button onClick={handleOpen} aria-label="Toggle menu" aria-expanded={open} aria-controls='menuContainer'>
           <svg width={size} height={size} viewBox="0 0 24 24" fill="none" strokeWidth={strokeWidth} strokeLinecap="round" >
